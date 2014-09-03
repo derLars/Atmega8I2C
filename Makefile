@@ -18,7 +18,7 @@ OUTPUTNAME=pr0gramm
 OUTPUTFORMAT=ihex
 
 #all the project files
-#REPLACE THIS FILES WITH YOUR PROJECT FILES!!!!
+#REPLACE THESE FILES WITH YOUR PROJECT FILES!!!!
 PRJSRC=main.c i2c.c 
 
 #project files as .o files
