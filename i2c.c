@@ -158,29 +158,37 @@ uint8_t sendAsMasterWithInterrupt(uint8_t slaveAdress, struct Message msg)
 }
 
 void receiveAsSlave(struct Message *msg)
-{
-	uint8_t byte = 0;
-	
+{	
 	int i;
 	for(i=0; i<BYTES; i++){		
-
-		TWCR = (1<<TWINT)|(1<<TWEN) |(1<<TWEA);
+		//TWEŃ enables TWI
+		//TWEA enables acknowledge bit
+		//TWIN clears TWI interrupt
+		TWCR = (1<<TWEN) | (1<<TWEA) | (1<<TWINT);
+		
+		//wait until received the message
 		while (!(TWCR & (1<<TWINT)));
 
+		//write received byte into the struct
 		msg->byte[i] = TWDR;
 	}
 
-	TWCR &= ~(1<<TWSTA) | (1<<TWSTO);
+
+	//TWCR &= ~(1<<TWSTA) | (1<<TWSTO);
+	//TWEŃ enables TWI
+	//TWIN clears TWI interrupt
+	//Send no more acknowledge bit so the Master get to know slave can't receive any more bytes
 	TWCR = (1<<TWEN) | (1<<TWINT);
 
 	while (!(TWCR & (1<<TWINT)));
 
-	TWCR = (1<<TWEN) | (1<<TWINT) |(1<<TWEA);
+	//set for the next message
+	TWCR = (1<<TWEN) | (1<<TWEA) | (1<<TWINT);
 }
 
 uint8_t checkRequest(void)
 {
-	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA);
+	TWCR = (1<<TWEN) | (1<<TWEA) | (1<<TWINT);
 	while (!(TWCR & (1<<TWINT)));
 
 	//returns the received adress and read/write condition
