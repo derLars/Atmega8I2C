@@ -37,6 +37,8 @@
 
 #define SLC_FREQUENCY		50000
 
+#define CLI_TIME_us 80000
+
 struct Message
 {
 	volatile uint8_t adress;

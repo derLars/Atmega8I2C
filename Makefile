@@ -41,8 +41,8 @@ CFLAGS= -mmcu=$(MCU) -O$(OPTIMIZE)
 LDFLAGS= 
 
 #executables
-CC=/opt/AVR/avr-gnu-toolchain/bin/avr-gcc
-OBJCOPY=/opt/AVR/avr-gnu-toolchain/bin/avr-objcopy
+CC=/opt/avr8-gnu-toolchain-linux_x86_64/bin/avr-gcc
+OBJCOPY=/opt/avr8-gnu-toolchain-linux_x86_64/bin/avr-objcopy
 AVRDUDE=avrdude
 
 all: $(OUTPUTNAME).hex clean flash
