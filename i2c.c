@@ -22,14 +22,14 @@
 
 void setInterrupt()
 {
-	DDRD |= (1<<PD2);
-	PORTD &= ~(1<<PD2);
+	DDRC |= (1<<PC3);
+	PORTC &= ~(1<<PC3);
 }
 
 void revokeInterrupt()
 {
-	DDRD |= (1<<PD2);
-	PORTD |= (1<<PD2);
+	DDRC |= (1<<PC3);
+	PORTC |= (1<<PC3);
 }
 
 uint32_t calcSCLFrequency(uint32_t bitrate)

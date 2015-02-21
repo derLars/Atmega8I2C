@@ -14,7 +14,7 @@
 #include <stdint.h>
 
 #ifndef F_CPU
-#define F_CPU 				1000000UL
+#define F_CPU 				8000000UL
 #endif
 
 #define SLAVEADRESS 		0x24
@@ -30,12 +30,12 @@
 #define I2C_SDA             PC4
 #define I2C_SCL             PC5
 
-#define BYTES 				8
+#define BYTES 				3
 
 #define TRUE 				1
 #define FALSE 				0
 
-#define SLC_FREQUENCY		50000
+#define SLC_FREQUENCY		400000
 
 #define CLI_TIME_us 80000
 

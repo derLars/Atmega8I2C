@@ -63,6 +63,14 @@ $(OUTPUTNAME).elf: $(OBJECTS)
 flash:
 	sudo $(AVRDUDE) -F -V -c $(PROGRAMMER) -p ATmega8 -P $(CONNECTION) -U flash:w:$(OUTPUTNAME).hex
 
+#set internal 8MHZ
+fuse8:
+	sudo $(AVRDUDE) -c $(PROGRAMMER) -p ATmega8 -U lfuse:w:0xe4:m -U hfuse:w:0xd9:m
+#set internal 2MHZ
+fuse2:
+	sudo $(AVRDUDE) -c $(PROGRAMMER) -p ATmega8 -U lfuse:w:0xe2:m -U hfuse:w:0xd9:m 
+
+
 clean:
 	rm -f *.o
 	rm -f *.elf
